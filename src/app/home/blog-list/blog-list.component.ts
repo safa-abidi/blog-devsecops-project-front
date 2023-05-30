@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
+import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-blog-list',
@@ -10,7 +11,7 @@ export class BlogListComponent implements OnInit {
 
   articles: any;
 
-  constructor( private data: DataService ) { }
+  constructor( private data: DataService, private sanitizer: DomSanitizer ) { }
 
   ngOnInit(): void {
 
@@ -18,14 +19,16 @@ export class BlogListComponent implements OnInit {
       .subscribe(
         res=>{
           this.articles = res;
-
         },
         err=>{
           console.log(err);
-          
+
         }
       );
 
   }
 
+  sanitize(description: string) : SafeHtml{
+    return this.sanitizer.bypassSecurityTrustHtml(description)
+  }
 }

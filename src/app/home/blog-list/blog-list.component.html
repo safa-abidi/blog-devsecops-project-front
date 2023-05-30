@@ -30,7 +30,7 @@
                  {{ item.title }}
                 </h3>
               </a>
-              <p> {{ item.description }} </p>
+              <div [innerHTML]="sanitize(item.description)"></div>
             </div>
             <div class="card-footer border-top-0 bg-transparent p-0">
               <ul class="card-meta list-inline">

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../services/data.service';
+import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-detail',
@@ -11,8 +12,9 @@ export class DetailComponent implements OnInit {
 
   id: any;
   article: any;
+  sanitizedDescription: any;
 
-  constructor(private act: ActivatedRoute , private data : DataService) { }
+  constructor(private act: ActivatedRoute , private data : DataService, private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
 
@@ -22,6 +24,7 @@ export class DetailComponent implements OnInit {
       .subscribe(
         res=>{
           this.article = res;
+          this.sanitizedDescription = this.sanitizer.bypassSecurityTrustHtml(this.article.description)
         }
       )
 

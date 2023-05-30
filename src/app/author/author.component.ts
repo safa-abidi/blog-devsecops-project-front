@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { DataService } from '../services/data.service';
+import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-author',
@@ -13,7 +14,7 @@ export class AuthorComponent implements OnInit {
   id: any;
   author: any;
   articles: any;
-  constructor(private act: ActivatedRoute , private _auth: AuthService , private data: DataService) { }
+  constructor(private act: ActivatedRoute , private _auth: AuthService , private data: DataService, private sanitizer: DomSanitizer) { }
 
 
   ngOnInit(): void {
@@ -24,7 +25,7 @@ export class AuthorComponent implements OnInit {
         res=>{
           this.author = res;
           console.log(this.author);
-          
+
         }
       );
     this.data.getArticleByIdAuthor(this.id)
@@ -35,10 +36,14 @@ export class AuthorComponent implements OnInit {
         ,
         err=>{
           console.log(err);
-          
-        }
-      );    
 
+        }
+      );
+
+  }
+
+  sanitize(description: string): SafeHtml{
+    return this.sanitizer.bypassSecurityTrustHtml(description)
   }
 
 }
