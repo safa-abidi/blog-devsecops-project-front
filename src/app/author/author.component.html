@@ -8,7 +8,7 @@
               <img class="img-fluid rounded" [src]="'http://127.0.0.1:3000/getimage/' + author.image" alt="Thomas Macaulay" width="250" height="250">
             </div>
             <div class="col-lg-9 col-md-12">
-              <p class="mb-2"><span class="fw-bold text-black">03</span> Published posts</p>
+              <p class="mb-2"><span class="fw-bold text-black">{{articles.length}}</span> Published posts</p>
               <h1 class="h3 text-dark mb-3"> {{ author.name + ' ' + author.lastname }} </h1>
               <div class="content">
                 <p> {{ author.about }} </p>
@@ -44,7 +44,7 @@
                 {{item.title}}
               </h3>
             </a>
-            <p>{{ item.description }}</p>
+            <div [innerHTML]="sanitize(item.description)"></div>
           </div>
           <div class="card-footer border-top-0 bg-transparent p-0">
             <ul class="card-meta list-inline">
