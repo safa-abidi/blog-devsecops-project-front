@@ -8,7 +8,7 @@ export class AuthService {
 
   constructor( private http: HttpClient ) { }
 
-  private url = 'http://blogmeantuto1.yolio.tech/author/';
+  private url = 'http://127.0.0.1:3000/author/';
 
 
   register( author: any ){

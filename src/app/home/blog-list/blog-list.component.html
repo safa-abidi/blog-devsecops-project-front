@@ -14,7 +14,7 @@
             <div class="card-body">
               <a class="d-block" [routerLink]="['/article' , item._id]" title="The AGI hype train is running out of steam">
                 <div class="post-image position-relative">
-                  <img class="w-100 h-auto rounded" [src]="'http://blogmeantuto1.yolio.tech/getimage/' + item.image" alt="The AGI hype train is running out of steam" width="970" height="500">
+                  <img class="w-100 h-auto rounded" [src]="'http://127.0.0.1:3000/getimage/' + item.image" alt="The AGI hype train is running out of steam" width="970" height="500">
                 </div>
               </a>
               <ul class="card-meta list-inline mb-3">
@@ -22,7 +22,7 @@
                   <i class="ti ti-calendar-event"></i>
                   <span> {{item.date | date }} </span>
                 </li>
-              
+
               </ul>
               <a class="d-block" [routerLink]="['/article' , item._id]"
                 title="The AGI hype train is running out of steam">
@@ -45,9 +45,9 @@
             </div>
           </article>
         </div>
-  
+
         <div class="col-12 text-center">
-          <a class="btn btn-primary mt-5" href="blog.html" aria-label="View all posts"><i class="ti ti-new-section me-2"></i>View all posts</a>
+          <a class="btn btn-primary mt-5" [routerLink]="['/']" aria-label="View all posts"><i class="ti ti-new-section me-2"></i>View all posts</a>
         </div>
       </div>
     </div>
