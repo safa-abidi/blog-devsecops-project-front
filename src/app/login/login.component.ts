@@ -11,6 +11,7 @@ import {NgForm} from "@angular/forms";
 export class LoginComponent implements OnInit {
 
   showAlert = false;
+  showAuthError= false;
   author={
     email:'',
     password:''
@@ -31,7 +32,6 @@ export class LoginComponent implements OnInit {
       this._auth.login(this.author)
         .subscribe(
           res=>{
-
             this.token = res;
             localStorage.setItem('token' , this.token.myToken)
             this.router.navigate(['/home']);
@@ -39,14 +39,14 @@ export class LoginComponent implements OnInit {
           },
           err=>{
             console.log(err);
-
+            this.showAlert = false;
+            this.showAuthError = true;
           }
         );
     }
     else{
       this.showAlert = true
     }
-
 
   }
 
