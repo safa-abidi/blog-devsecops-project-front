@@ -4,20 +4,23 @@
 
     <h2 class="text-center"> Create author account </h2>
 
-    <div class="col-6 mx-auto">
+    <form class="col-6 mx-auto" #registerForm="ngForm">
 
-     
 
-        <input [(ngModel)]="author.name" type="text" class="form-control m-1" placeholder="name">
-        <input  [(ngModel)]="author.lastname" type="text" class="form-control m-1" placeholder="lastname">
-        <input  [(ngModel)]="author.email" type="text" class="form-control m-1" placeholder="email">
-        <input  [(ngModel)]="author.password" type="password" class="form-control m-1" placeholder="password">
+
+        <input ngModel name="name" type="text" class="form-control m-1" placeholder="name" required>
+        <input ngModel name="lastname" type="text" class="form-control m-1" placeholder="lastname" required>
+        <input ngModel name="email" type="text" class="form-control m-1" placeholder="email" required>
+        <input ngModel name="password" type="password" class="form-control m-1" placeholder="password (more than 6 characters)" minlength="6" required>
         <input type="file" (change)="select($event)"  class="form-control m-1" placeholder="image">
-        <textarea  [(ngModel)]="author.about" name="" id="" cols="30" rows="4" placeholder="about" class="form-control m-1" ></textarea>
+        <textarea ngModel name="about" id="" cols="30" rows="4" placeholder="about" class="form-control m-1" ></textarea>
 
-        <button (click)="register()" class="btn btn-dark form-control m-1">Register</button>
+        <div *ngIf="showAlert" class="bg-red-100 px-4 py-3 m-1 rounded" role="alert" style="background-color:red;">
+          <span class="text-white">Please fill all required fields correctly</span>
+        </div>
+        <button (click)="register(registerForm)" class="btn btn-dark form-control m-1">Register</button>
 
 
-    </div>
+    </form>
 
 </div>
